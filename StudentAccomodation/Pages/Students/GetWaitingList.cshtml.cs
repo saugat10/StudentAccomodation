@@ -6,19 +6,17 @@ using System.Collections.Generic;
 
 namespace StudentAccomodation.Pages.Students
 {
-    public class GetStudentsModel : PageModel
+    public class GetWaitingListModel : PageModel
     {
-        public IEnumerable<Student> Students { get; set; }
+        public IEnumerable<Student> WaitingList { get; set; }
 
         IStudentService studentService;
-        public GetStudentsModel(IStudentService service)
-        {
+        public GetWaitingListModel(IStudentService service) { 
             studentService = service;
         }
-
         public void OnGet(string type)
         {
-            Students = studentService.GetAllStudents(type);
+            WaitingList = studentService.GetAllStudents(type);
         }
     }
 }

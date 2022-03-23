@@ -1,19 +1,7 @@
 ﻿@page
-@model StudentAccomodation.Pages.Students.GetStudentsModel
+@model StudentAccomodation.Pages.Students.GetWaitingListModel
 @{
 }
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <a class="btn btn-primary" asp-page="/Students/GetWaitingList" asp-route-type = "WaitingList">Waiting List</a>
-    </div>
-    <div class="col align-self-end">
-      <p>Total Number Of data : @Model.Students.Count()</p>
-    </div>
-  </div>
-</div>
- <br />
 <table class= "table">
      <thead>
          <tr>
@@ -25,7 +13,7 @@
          </tr>
      </thead>
      <tbody>
-        @foreach(var @item in Model.Students)
+        @foreach(var @item in Model.WaitingList)
         {
              <tr>
                  <td>@item.StudentNo</td>
