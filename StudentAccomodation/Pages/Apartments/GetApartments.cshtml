@@ -29,7 +29,7 @@
              }else {
                  <td> </td>
              }
-             <td><a asp-page="/Rooms/GetVacantRoom" asp-route-id="@item.Apartment_No">View Vacant Room</a></td>
+             <td><a class="btn btn-info" asp-page="/Rooms/GetVacantRoom" asp-route-id="@item.Apartment_No" asp-route-type="Apartment">View Vacant Room</a></td>
             </tr>    
         }
         

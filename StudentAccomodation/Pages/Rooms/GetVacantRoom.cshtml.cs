@@ -15,9 +15,9 @@ namespace StudentAccomodation.Pages.Rooms
         public GetVacantRoomModel(IApartmentService service) {
             apartmentSerivce = service;
         }
-        public void OnGet(int id)
+        public void OnGet(int id, string type)
         {
-            VacantRoom = apartmentSerivce.GetVacentRooms(id);
+            VacantRoom = apartmentSerivce.GetVacentRooms(id, type);
         }
     }
 }

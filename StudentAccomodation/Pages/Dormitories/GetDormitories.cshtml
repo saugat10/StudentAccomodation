@@ -8,6 +8,7 @@
             <th>Dormitory ID</th>
             <th>Name</th>
             <th>Address</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -16,7 +17,8 @@
         <tr>
             <td>@item.Dormitory_No</td>
             <td>@item.Name</td>
-            <td>@item.Address </td>
+            <td>@item.Address</td>
+            <td><a class="btn btn-info" asp-page="/Rooms/GetVacantRoom" asp-route-id="@item.Dormitory_No" asp-route-type="Room">View Vacant Room</a></td>
         </tr>    
         }
         

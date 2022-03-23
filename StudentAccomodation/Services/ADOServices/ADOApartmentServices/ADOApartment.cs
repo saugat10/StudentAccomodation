@@ -40,10 +40,18 @@ namespace Student_Accomodation.Services.ADOServices.ADOApartmentServices
             }
         }
 
-        public List<Room> GetVacentRooms(int id)
+        public List<Room> GetVacentRooms(int id, string type)
         {
             List<Room> returnList = new List<Room>();
-            string query = $"select *  from Room where Appart_No = {id} AND occupied = 0 ";
+            string query;
+            if(type == "Apartment")
+            {
+                query = $"select *  from Room where Appart_No = {id} AND occupied = 0 ";
+            }
+            else{
+                query = $"select *  from Room where Dormitory_No = {id} AND occupied = 0 ";
+            }
+             
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -58,7 +66,6 @@ namespace Student_Accomodation.Services.ADOServices.ADOApartmentServices
                         vacantRoom.RentPerSemester = Convert.ToInt32(reader[1]);
                         vacantRoom.Occupied = Convert.ToBoolean(reader[2]);
                         vacantRoom.RoomNo  = Convert.ToInt32(reader[3]);
-                        vacantRoom.AppartNo = Convert.ToInt32(reader[5]);
                         returnList.Add(vacantRoom);
                     }
                 }
