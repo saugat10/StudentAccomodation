@@ -16,10 +16,16 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
             connectionString = configuration.GetConnectionString("StudentAccomodation");
         }
 
-        public List<Student> GetAllStudents()
+        public List<Student> GetAllStudents(string type)
         {
             List<Student> returnList = new List<Student>();
-            string query = "select *  from Student";
+
+            string query;
+            if (type == "Student") {
+                query = "select *  from Student";
+            } else {
+                query = "select *  from Student order by Registration_Date";
+            }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -41,5 +47,7 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
                 return returnList;
             }
         }
+
+
     }
 }

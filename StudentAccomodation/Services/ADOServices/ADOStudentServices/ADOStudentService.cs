@@ -12,9 +12,10 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
         {
             studentService = service;
         }
-        public IEnumerable<Student> GetAllStudents()
+        public IEnumerable<Student> GetAllStudents(string type)
         {
-            return studentService.GetAllStudents();
+            return studentService.GetAllStudents(type);
        }
+
     }
 }
