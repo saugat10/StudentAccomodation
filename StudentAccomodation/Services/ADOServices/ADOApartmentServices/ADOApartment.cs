@@ -39,5 +39,31 @@ namespace Student_Accomodation.Services.ADOServices.ADOApartmentServices
                 return returnList;
             }
         }
+
+        public List<Room> GetVacentRooms(int id)
+        {
+            List<Room> returnList = new List<Room>();
+            string query = $"select *  from Room where Appart_No = {id} AND occupied = 0 ";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Room vacantRoom = new Room();
+                        vacantRoom.PlaceNo = Convert.ToInt32(reader[0]);
+                        vacantRoom.RentPerSemester = Convert.ToInt32(reader[1]);
+                        vacantRoom.Occupied = Convert.ToBoolean(reader[2]);
+                        vacantRoom.RoomNo  = Convert.ToInt32(reader[3]);
+                        vacantRoom.AppartNo = Convert.ToInt32(reader[5]);
+                        returnList.Add(vacantRoom);
+                    }
+                }
+                return returnList;
+            }
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Student_Accomodation.Services.Interfaces
     public interface IApartmentService
     {
         IEnumerable<Apartment> GetAllApartments();
+        IEnumerable<Room> GetVacentRooms(int id);
     }
 }
