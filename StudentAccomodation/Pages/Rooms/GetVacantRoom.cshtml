@@ -1,0 +1,26 @@
+﻿@page
+@model StudentAccomodation.Pages.Rooms.GetVacantRoomModel
+@{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Place No</th>
+            <th>Rent Per Semester</th>
+            <th>Occupied</th>
+            <th>Room No.</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var @items in Model.VacantRoom)
+        {
+            <tr>    
+            <td>@items.PlaceNo</td>
+            <td>@items.RentPerSemester</td>
+            <td>@items.Occupied</td>
+            <td>@items.RoomNo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

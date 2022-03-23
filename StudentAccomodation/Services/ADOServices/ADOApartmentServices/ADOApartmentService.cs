@@ -15,5 +15,10 @@ namespace Student_Accomodation.Services.ADOServices.ADOApartmentServices
         {
             return  apartmentService.GetAllApartments();
         }
+
+        public IEnumerable<Room> GetVacentRooms(int id)
+        {
+            return apartmentService.GetVacentRooms(id);
+        }
     }
 }

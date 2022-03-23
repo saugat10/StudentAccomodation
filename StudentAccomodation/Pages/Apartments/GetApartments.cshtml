@@ -8,12 +8,14 @@
             <th>Apartment ID</th>
             <th>Address</th>
             <th>Apartment Type</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach(var @item in Model.Apartments)
         {
         <tr>
+            
             <td>@item.Apartment_No</td>
             <td>@item.Address</td>
              @if (@item.Types == '3')
@@ -27,6 +29,7 @@
              }else {
                  <td> </td>
              }
+             <td><a asp-page="/Rooms/GetVacantRoom" asp-route-id="@item.Apartment_No">View Vacant Room</a></td>
             </tr>    
         }
         
