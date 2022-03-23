@@ -1,0 +1,45 @@
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using Student_Accomodation.Models;
+using System;
+using System.Collections.Generic;
+
+namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
+{
+    public class ADOStudent
+    {
+        string connectionString;
+        private IConfiguration configuration;
+        public ADOStudent(IConfiguration config)
+        {
+            configuration = config;
+            connectionString = configuration.GetConnectionString("StudentAccomodation");
+        }
+
+        public List<Student> GetAllStudents()
+        {
+            List<Student> returnList = new List<Student>();
+            string query = "select *  from Student";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Student student = new Student();
+                        student.StudentNo = Convert.ToInt32(reader[0]);
+                        student.SName = Convert.ToString(reader[1]);
+                        student.SAddress = Convert.ToString(reader[2]);
+                        student.HasRoom = Convert.ToBoolean(reader[3]);
+                        student.RegistrationDate = Convert.ToDateTime(reader[4]);
+                        returnList.Add(student);
+                    }
+                }
+                return returnList;
+            }
+        }
+    }
+}

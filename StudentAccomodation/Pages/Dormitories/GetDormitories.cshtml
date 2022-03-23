@@ -1,0 +1,24 @@
+﻿@page
+@model StudentAccomodation.Pages.Dormitories.GetDormotoriesModel
+@{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Dormitory ID</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var @item in Model.Dormotory)
+        {
+        <tr>
+            <td>@item.Dormitory_No</td>
+            <td>@item.Name</td>
+            <td>@item.Address </td>
+        </tr>    
+        }
+        
+    </tbody>
+</table>

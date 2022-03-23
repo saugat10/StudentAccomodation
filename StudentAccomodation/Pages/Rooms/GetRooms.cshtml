@@ -1,0 +1,37 @@
+﻿@page
+@model StudentAccomodation.Pages.Rooms.GetRoomsModel
+@{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Place No</th>
+            <th>Rent Per Semester</th>
+            <th>Occupied</th>
+            <th>Room No.</th>
+            <th>Dormitory Room</th>
+            <th>Apartment Room</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var @items in Model.Rooms)
+        {
+            <tr>    
+            <td>@items.PlaceNo</td>
+            <td>@items.RentPerSemester</td>
+            <td>@items.Occupied</td>
+            <td>@items.RoomNo</td>
+            @if(@items.DoritoryNo == -1){
+                <td>No</td>
+            }else{
+                <td>Yes</td>
+            }
+            @if(@items.AppartNo == -1){
+                <td>No</td>
+            }else{
+                <td>Yes</td>
+            }
+            </tr>
+        }
+    </tbody>
+</table>

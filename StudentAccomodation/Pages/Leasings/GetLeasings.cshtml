@@ -1,0 +1,27 @@
+﻿@page
+@model StudentAccomodation.Pages.Leasings.GetLeasingsModel
+@{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Leasing ID</th>
+            <th>Student ID</th>
+            <th>Place No.</th>
+            <th>Date From</th>
+            <th>Date To</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var @item in Model.Leasings)
+        {
+        <tr>
+            <td>@item.Leasing_No</td>
+            <td>@item.Student_No</td>
+            <td>@item.Place_No</td>
+            <td>@item.Date_From</td>
+            <td>@item.Date_To</td>
+        </tr>    
+        }
+    </tbody>
+</table>
