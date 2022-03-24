@@ -7,6 +7,8 @@ namespace Student_Accomodation.Models
     {
         [Key]
         public int Leasing_No { get; set; }
+
+        [Required]
         public DateTime Date_From { get; set; }
         public DateTime Date_To { get; set; }
         public int Student_No { get; set; }

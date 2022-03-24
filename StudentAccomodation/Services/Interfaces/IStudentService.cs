@@ -6,6 +6,9 @@ namespace Student_Accomodation.Services.Interfaces
     public interface IStudentService
     {
         IEnumerable<Student> GetAllStudents(string type);
+
+        Student GetTopStudent();
+        
         
     }
 }

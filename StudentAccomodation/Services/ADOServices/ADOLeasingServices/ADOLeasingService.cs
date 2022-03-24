@@ -1,5 +1,6 @@
 ﻿using Student_Accomodation.Models;
 using Student_Accomodation.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
@@ -16,9 +17,10 @@ namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
             return leasingService.GetAllLeasing();
         }
 
-        public List<Leasing> GetWaitingStudent(int placeNO)
+        public void AddLeasing(int placeNO, int studentNO, DateTime dateFrom, DateTime dateTo)
         {
-            return leasingService.GetWaitingStudent(placeNO);
+            
+            leasingService.AddLeasing(placeNO, studentNO, dateFrom, dateTo);
         }
     }
 }

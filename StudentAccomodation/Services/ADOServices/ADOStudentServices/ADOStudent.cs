@@ -48,6 +48,35 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
             }
         }
 
+        public Student GetTopStudent()
+        {
+            
+            string query = "select top 1 *  from student where Has_Room = 0 order by Registration_Date";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                Student student = new Student();
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    //Leasing leasing = new Leasing();
+                    //leasing.Student_No = Convert.ToInt32(reader);
+                    //leasing.Place_No = placeNO;
+                    //returnList.Add(leasing);
+                    while (reader.Read())
+                    {
+                        
+                        student.StudentNo = Convert.ToInt32(reader[0]);
+                        student.SName = Convert.ToString(reader[1]);
+                        student.SAddress = Convert.ToString(reader[2]);
+                        student.HasRoom = Convert.ToBoolean(reader[3]);
+                        student.RegistrationDate = Convert.ToDateTime(reader[4]);
+                        
+                    }
+                }
+                return student;
+            }
+        }
     }
 }
