@@ -15,8 +15,8 @@ namespace StudentAccomodation.Pages.Leasings
         [BindProperty] public int RoomPlaceNo { get; set; }
         [BindProperty] public Student Student { get; set; }
 
-        [BindProperty] public DateTime DateFrom { get; set; } = new DateTime(2022, 07, 01);
-        [BindProperty] public DateTime DateTo { get; set; } = new DateTime(2022, 12, 31);
+        [BindProperty] public DateTime DateFrom { get; set; } //= new DateTime(2022, 07, 01);
+        [BindProperty] public DateTime DateTo { get; set; } //= new DateTime(2022, 12, 31);
 
         IStudentService studentService;
 
@@ -30,8 +30,8 @@ namespace StudentAccomodation.Pages.Leasings
         {   
             Student = studentService.GetTopStudent();
             RoomPlaceNo = placeNo;
-            DateFrom = Convert.ToDateTime(DateFrom.ToString("MM/dd/yyyy HH:mm"));
-            DateTo = Convert.ToDateTime(DateTo.ToString("MM/dd/yyyy HH:mm"));
+            DateFrom = new DateTime(2022, 07, 01);
+            DateTo = new DateTime(2022, 12, 31);
         }
 
         public IActionResult OnPost()

@@ -44,8 +44,36 @@ namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
 
         public void AddLeasing(int placeNO, int studentNO, DateTime dateFrom, DateTime dateTo)
         {
-            string query = $"Insert into Leasing(Student_No, Place_No, Date_From, Date_To) Values({studentNO},{placeNO}, {dateFrom}, {dateTo})";
+            string query = $"Insert into Leasing(Student_No, Place_No, Date_From, Date_To) Values({studentNO},{placeNO}, '{dateFrom.ToString("yyyy/MM/dd")}', '{dateTo.ToString("yyyy/MM/dd")}')";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int numberOfRowsAffected = command.ExecuteNonQuery();
+                    ChangeHasRoom(studentNO);
+                    ChangeOccupied(placeNO);
+                    
+                }
+            }
+        }
+
+        public void ChangeHasRoom(int id) {
+            string query = $"UPDATE Student SET Has_Room = 1 WHERE Student_No = {id}";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int numberOfRowsAffected = command.ExecuteNonQuery();
+                    
+                }
+            }
+        }
+        public void ChangeOccupied(int id)
+        {
+            string query = $"UPDATE Room SET Occupied = 1 WHERE Place_No = {id}";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -55,5 +83,6 @@ namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
                 }
             }
         }
+
     }
 }
