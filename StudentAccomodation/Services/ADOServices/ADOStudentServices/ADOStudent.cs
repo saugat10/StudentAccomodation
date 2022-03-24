@@ -24,7 +24,7 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
             if (type == "Student") {
                 query = "select *  from Student";
             } else {
-                query = "select *  from Student order by Registration_Date";
+                query = "select *  from Student Where Has_Room = 0 order by Registration_Date";
             }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
