@@ -9,6 +9,7 @@
             <th>Rent Per Semester</th>
             <th>Occupied</th>
             <th>Room No.</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
             <td>@items.RentPerSemester</td>
             <td>@items.Occupied</td>
             <td>@items.RoomNo</td>
+            <td><a class="btn btn-info" asp-page="/Leasing/AddLeasing" asp-route-id="@items.PlaceNo">Lease this Room</a></td>
             </tr>
         }
     </tbody>
