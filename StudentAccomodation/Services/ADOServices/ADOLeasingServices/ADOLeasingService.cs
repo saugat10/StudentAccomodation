@@ -15,5 +15,10 @@ namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
         {
             return leasingService.GetAllLeasing();
         }
+
+        public List<Leasing> GetWaitingStudent(int placeNO)
+        {
+            return leasingService.GetWaitingStudent(placeNO);
+        }
     }
 }
