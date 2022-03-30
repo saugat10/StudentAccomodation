@@ -78,5 +78,32 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
                 return student;
             }
         }
+
+        public Student GetStudent(int id)
+        {
+
+            string query = $"select  *  from student where Student_No = {id}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                Student student = new Student();
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        student.StudentNo = Convert.ToInt32(reader[0]);
+                        student.SName = Convert.ToString(reader[1]);
+                        student.SAddress = Convert.ToString(reader[2]);
+                        student.HasRoom = Convert.ToBoolean(reader[3]);
+                        student.RegistrationDate = Convert.ToDateTime(reader[4]);
+
+                    }
+                }
+                return student;
+            }
+        }
     }
 }

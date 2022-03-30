@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Student_Accomodation.Models;
+using StudentAccomodation.ViewModels;
 using System;
 using System.Collections.Generic;
 
@@ -81,6 +82,50 @@ namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
                 {
                     int numberOfRowsAffected = command.ExecuteNonQuery();
                 }
+            }
+        }
+
+        public List<StudentLeasings> GetStudentLeasings(int id)
+        {
+            List<StudentLeasings> returnList = new List<StudentLeasings>();
+            string query = "SELECT l.Leasing_No, r.Place_No, r.Room_No, a.[Address], d.[Name] FROM leasing l " +
+                "INNER JOIN Room r ON l.Place_No = r.Place_No " +
+                "LEFT JOIN Appartment a ON r.Appart_No = a.Appart_No " +
+                "LEFT JOIN Dormitory d ON r.Dormitory_No = d.Dormitory_No " +
+                $"WHERE l.Student_No = {id}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        StudentLeasings studentLeasing = new StudentLeasings();
+                        studentLeasing.LeasingNO = Convert.ToInt32(reader[0]);
+                        studentLeasing.PlaceNO = Convert.ToInt32(reader[1]);
+                        studentLeasing.RoomNO = Convert.ToInt32(reader[2]);
+                        if (!(reader[3] is DBNull))
+                        {
+                            studentLeasing.Address = Convert.ToString(reader[3]);
+                        }
+                        else {
+                            studentLeasing.Address = null;
+                        }
+
+                        if (!(reader[4] is DBNull))
+                        {
+                            studentLeasing.Name = Convert.ToString(reader[4]);
+                        }
+                        else
+                        {
+                            studentLeasing.Name = null;
+                        }
+                        returnList.Add(studentLeasing);
+                    }
+                }
+                return returnList;
             }
         }
 

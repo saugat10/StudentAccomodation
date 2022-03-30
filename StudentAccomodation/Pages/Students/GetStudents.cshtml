@@ -24,6 +24,7 @@
              <th>Address</th>
              <th>Has Room</th>
              <th>Registration Date</th>
+             <th>Action</th>
          </tr>
      </thead>
      <tbody>
@@ -35,6 +36,13 @@
                  <td>@item.SAddress</td>
                  <td>@item.HasRoom</td>
                  <td>@item.RegistrationDate</td>
+                 <td>
+                     <a class="btn btn-danger" asp-page="/Students/DeleteStudents" asp-route-id="@item.StudentNo">Delete</a>
+                    @if (item.HasRoom)
+                    {
+                       <a class="btn btn-success" asp-page="/Students/StudentLeasings" asp-route-id="@item.StudentNo">Leasings</a> 
+                    }
+                    </td>
              </tr> 
         }
          

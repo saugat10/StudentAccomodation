@@ -8,7 +8,10 @@ namespace Student_Accomodation.Services.Interfaces
         IEnumerable<Student> GetAllStudents(string type);
 
         Student GetTopStudent();
-        
-        
+
+        Student GetStudent(int id);
+
+
+
     }
 }

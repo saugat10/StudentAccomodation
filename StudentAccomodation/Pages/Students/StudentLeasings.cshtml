@@ -1,0 +1,42 @@
+﻿@page
+@model StudentAccomodation.Pages.Students.StudentLeasingsModel
+@{
+}
+
+<div>
+    <h3>The leasing list of <b>@Model.Student.SName</b></h3>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Leasing Number</th>
+            <th>Place Number</th>
+            <th>Room Number</th>
+            <th>Is Apartment</th>
+            <th>Apartment Address</th>
+            <th>Is Dormitory</th>
+            <th>Dormitory Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.StudentLeasings){
+            <tr>
+                <td>@item.LeasingNO</td>
+                <td>@item.PlaceNO</td>
+                <td>@item.RoomNO</td>
+                @if (@item.Address != null)
+                {
+                    <td>Yes</td>
+                    <td>@item.Address</td>
+                    <td>No</td>
+                    <td>No Data</td>
+                }else{
+                    <td>No</td>
+                    <td>No Data</td>
+                    <td>Yes</td>
+                    <td>@item.Name</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -21,5 +21,9 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
         {
             return studentService.GetTopStudent();
         }
+
+        public Student GetStudent(int id) { 
+            return studentService.GetStudent(id);
+        }
     }
 }

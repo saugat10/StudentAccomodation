@@ -2,6 +2,7 @@
 using Student_Accomodation.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using StudentAccomodation.ViewModels;
 
 namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
 {
@@ -21,6 +22,10 @@ namespace Student_Accomodation.Services.ADOServices.ADOLeasingServices
         {
             
             leasingService.AddLeasing(placeNO, studentNO, dateFrom, dateTo);
+        }
+
+        public IEnumerable<StudentLeasings> GetStudentLeasings(int Id) {
+            return leasingService.GetStudentLeasings(Id);
         }
     }
 }
