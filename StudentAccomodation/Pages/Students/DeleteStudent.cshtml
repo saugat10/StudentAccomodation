@@ -1,0 +1,19 @@
+﻿@page
+@model StudentAccomodation.Pages.Students.DeleteStudentModel
+@{
+}
+
+<div>
+    <h1>Do you want to Delete @Model.Student.SName ?</h1>
+    <form method="post">
+        <div class="form-group">
+            <input asp-for="@Model.Student.StudentNo"  class="form-control" hidden="hidden"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-danger"/>
+            <a class="btn btn-dark" asp-page="/Students/GetStudents" asp-route-type = "Student">Cancel</a>
+        </div>
+    </form>
+   
+    
+</div>

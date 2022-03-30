@@ -10,8 +10,7 @@ namespace Student_Accomodation.Services.Interfaces
         Student GetTopStudent();
 
         Student GetStudent(int id);
-
-
+        public void DeleteStudent(int id);
 
     }
 }
