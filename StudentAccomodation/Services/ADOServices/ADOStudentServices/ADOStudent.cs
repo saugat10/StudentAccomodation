@@ -105,5 +105,51 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
                 return student;
             }
         }
+
+        public void DeleteStudent(int id)
+        {
+            UpdateRoom(id);
+            DeleteLeasing(id);
+            string query = $"DELETE FROM Student WHERE Student_No = {id}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int numberOfRowsAffected = command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateRoom(int id)
+        {
+            string query = "UPDATE r SET Occupied = 0 " +
+                "FROM room r INNER join Leasing l on r.Place_No = l.Place_No " +
+                $"where l.Student_No = {id}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int numberOfRowsAffected = command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteLeasing(int id)
+        {
+            string query = $"DELETE FROM Leasing Where Student_No = {id}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int numberOfRowsAffected = command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

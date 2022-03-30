@@ -25,5 +25,9 @@ namespace Student_Accomodation.Services.ADOServices.ADOStudentServices
         public Student GetStudent(int id) { 
             return studentService.GetStudent(id);
         }
+
+        public void DeleteStudent(int id) {
+            studentService.DeleteStudent(id);
+        }
     }
 }
